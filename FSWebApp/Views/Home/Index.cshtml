@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@model FSWebApp.Models.FinancialStatementFile
+
+<div style="width: 100%; overflow: hidden;">
+    <div class="form-horizontal" style="width: 50%; float:left; min-height: 400px;">
+        @using (Html.BeginForm("FSForm", "Home", FormMethod.Post, new { enctype = "multipart/form-data", id = "FSform" }))
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Surname, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Income, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Income, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Photo, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Photo, new { type = "file" })
+                    @*@Html.EditorFor(model => model.Photo, new { htmlAttributes = new { @class = "form-control", @type = "file" } })*@
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Age, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Submit" class="btn btn-default" />
+                </div>
+            </div>
+        }
+    </div>
+    <div style="overflow: hidden;">
+        @if (ViewBag.Image != null)
+        {
+            <div style="border: 1px solid #E0E0E0; min-height: 400px; padding: 10px">
+                <div style="float: left">
+                    <img src="@ViewBag.Image" />
+                </div>
+                <div style="float: right">
+                    <img src="@ViewBag.Code" />
+                </div>
+                <div style="float: left; width: 100%">
+                    <h1 class="display-4">Financial Statement</h1>
+                    <b>Name:</b> @ViewBag.Name
+                    <br />
+                    <b>Surname:</b> @ViewBag.Surname
+                    <br />
+                    <b>Income:</b> @ViewBag.Income
+                    <br />
+                    <b>Age:</b> @ViewBag.Age
+                </div>            
+            </div>  
+        }
+    </div>
+</div>
